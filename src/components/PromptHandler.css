@@ -1,4 +1,10 @@
 /* src/components/PromptHandler.css */
+.prompt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -9,10 +15,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;  /* Align spinner and text vertically */
 }
 
 .loading-text {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
+  margin-top: 20px;  /* Add spacing between spinner and text */
 }

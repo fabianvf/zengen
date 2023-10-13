@@ -11,7 +11,7 @@ function KoanDisplay() {
 
   useEffect(() => {
     const fetchKoan = async () => {
-      const response = await fetch(`http://localhost:5000/koan/${id}`);
+        const response = await fetch(`http://localhost:5000/api/koan/${id}`);
       const data = await response.json();
       setKoan(data.koan);
       setImageUrl(data.image_url);

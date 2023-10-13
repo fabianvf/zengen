@@ -20,20 +20,18 @@ def generate_image(koan):
         response = openai.Image.create(
             prompt=enriched_prompt,
             n=1,  # Generate 1 image
-            size="512x512"
+            size="512x512",
+            response_format="b64_json"
             # ... other parameters as needed
         )
 
         # Assuming the API returns a list of image data, and that image_data is a bytes object
-        image_data = response['data'][0]
+        image_base64 = response['data'][0]['b64_json']
 
-        # Convert the image data to a base64-encoded string
-        # image_base64 = base64.b64encode(image_data).decode('utf-8')
-        image_url = response['data'][0]['url']  # Adjust this line based on the actual structure of the response object
         # Create a Data URL
-        # image_data_url = f"data:image/png;base64,{image_base64}"
+        image_data_url = f"data:image/png;base64,{image_base64}"
 
-        return image_url
+        return image_data_url
 
     except Exception as e:
         print(f"Failed to generate image: {e}")

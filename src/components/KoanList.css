@@ -1,0 +1,34 @@
+/* src/components/KoanList.css */
+.koan-list {
+    width: 100%;
+    height: 50vh;  /* Adjust height as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;  /* Spacing between items */
+}
+
+.koan-item {
+    width: 80%;  /* Adjust width as needed */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;  /* Light background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.koan-item img {
+    max-width: 40%;  /* Adjust max-width as needed */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 10px;
+}
+
+.koan-item div {
+    width: 50%;  /* Adjust width as needed */
+    text-align: center;
+    font-size: 1.2em;  /* Larger text */
+}

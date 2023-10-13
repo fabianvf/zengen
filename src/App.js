@@ -6,14 +6,14 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import PromptHandler from './components/PromptHandler';
 import KoanDisplay from './components/KoanDisplay';
+import HomePage from './components/HomePage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<PromptHandler />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route path="/koan/:id" element={<KoanDisplay />} />
       </Routes>
     </Router>
