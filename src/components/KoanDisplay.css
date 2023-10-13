@@ -1,0 +1,22 @@
+/* src/components/KoanDisplay.css */
+
+.koan-display-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  display: flex;  /* Set the display to flex */
+}
+
+.koan-text {
+  font-size: 24px;
+  margin-left: 20px;  /* Add some margin to separate the text from the image */
+}
+
+.generated-image {
+  max-width: 50%;  /* Adjust the max-width to fit your design */
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
