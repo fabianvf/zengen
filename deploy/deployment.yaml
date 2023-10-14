@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zengen-deployment
+  labels:
+    app: zengen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zengen
+  template:
+    metadata:
+      labels:
+        app: zengen
+    spec:
+      # TODO need to mount a pvc for the database
+      containers:
+      - name: zengen-app
+        image: docker.io/fabianvf/zengen:latest
+        ports:
+        - containerPort: 5000
