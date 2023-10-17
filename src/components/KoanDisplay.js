@@ -7,14 +7,14 @@ import './KoanDisplay.css';  // Import the CSS file
 function KoanDisplay() {
   const { id } = useParams();
   const [koan, setKoan] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
     const fetchKoan = async () => {
         const response = await fetch(`/api/koan/${id}`);
       const data = await response.json();
-      setKoan(data.koan);
-      setImageUrl(data.image_url);
+      setKoan(data);
+      // setImageUrl(data.image_url);
     };
     fetchKoan();
   }, [id]);
@@ -25,8 +25,8 @@ function KoanDisplay() {
         <div className="koan-display">
         {koan && (
             <React.Fragment>
-                {imageUrl && <div className="koan-image"><img src={imageUrl} alt="Koan imagery" /></div>}
-            <div className="koan-text">{koan}</div>
+                {koan.image_url && <div className="koan-image"><img src={koan.image_url} alt={koan.image_alt_text} /></div>}
+                <div className="koan-text">{koan.koan}</div>
             </React.Fragment>
         )}
         </div>

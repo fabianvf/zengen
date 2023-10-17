@@ -18,7 +18,7 @@ function KoanList() {
     <div className="koan-list">
       {koans.map((koan, index) => (
         <div key={index} className="koan-item">
-          <img src={koan.image_url} alt={`Imagery for koan ${index}`} />
+          <img src={koan.image_url} alt={koan.image_alt_text} />
           <div>{koan.koan_text}</div>
         </div>
       ))}

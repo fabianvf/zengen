@@ -7,3 +7,4 @@ class Koan(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     koan_text = db.Column(db.String, nullable=False)
     image_url = db.Column(db.String, nullable=True)  # nullable=True allows for koans without images
+    image_description = db.Column(db.String, nullable=True)  # nullable=True allows for koans without images

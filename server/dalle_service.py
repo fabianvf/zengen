@@ -1,6 +1,8 @@
 # server/dalle_service.py
 import openai
 import base64
+from binascii import a2b_base64
+
 
 def generate_image(koan):
     try:
@@ -22,16 +24,10 @@ def generate_image(koan):
             n=1,  # Generate 1 image
             size="512x512",
             response_format="b64_json"
-            # ... other parameters as needed
         )
 
-        # Assuming the API returns a list of image data, and that image_data is a bytes object
-        image_base64 = response['data'][0]['b64_json']
+        return enriched_prompt, response['data'][0]['b64_json']
 
-        # Create a Data URL
-        image_data_url = f"data:image/png;base64,{image_base64}"
-
-        return image_data_url
 
     except Exception as e:
         print(f"Failed to generate image: {e}")

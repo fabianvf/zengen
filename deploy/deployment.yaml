@@ -20,3 +20,18 @@ spec:
         image: docker.io/fabianvf/zengen:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: OPENAI_API_KEY
+          value: "fill this in"
+        volumeMounts:
+        - name: db-storage
+          mountPath: /usr/src/app/instance
+        - name: images-storage
+          mountPath: /usr/src/app/frontend/build/static/koans
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: db-pvc
+      - name: images-storage
+        persistentVolumeClaim:
+          claimName: images-pvc

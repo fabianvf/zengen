@@ -1,11 +1,15 @@
+import os
+from binascii import a2b_base64
+
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+import openai
+from sqlalchemy.sql.expression import func
+
+import settings
 import gpt4_service
 import dalle_service
 from database import db, Koan
-import openai
-import settings
-from sqlalchemy.sql.expression import func
 
 openai.api_key = settings.openai_api_key
 app = Flask(__name__, static_folder=settings.static_folder, static_url_path='/')
@@ -41,13 +45,23 @@ def get_koan(id):
     koan = Koan.query.get(id)
     if koan is None:
         return jsonify({'error': 'Koan not found'}), 404
-    return jsonify({'koan': koan.koan_text, 'image_url': koan.image_url})
+    return jsonify({
+        'koan': koan.koan_text,
+        'image_url': koan.image_url,
+        'image_alt_text': koan.image_description,
+    })
 
 
+# TODO make this like a paginated thing with random option
 @app.route('/api/koans', methods=['GET'])
 def get_koans():
     random_koans = Koan.query.order_by(func.random()).limit(10).all()
-    koan_list = [{'koan_id': koan.id, 'koan_text': koan.koan_text, 'image_url': koan.image_url} for koan in random_koans]
+    koan_list = [{
+        'koan_id': koan.id, 
+        'koan_text': koan.koan_text, 
+        'image_url': koan.image_url,
+        'image_alt_text': koan.image_description,
+    } for koan in random_koans]
     return jsonify({'koans': koan_list})
 
 
@@ -57,10 +71,17 @@ def generate_image():
     koan = Koan.query.get(koan_id)
     if koan is None:
         return jsonify({'error': 'Koan not found'}), 404
-    image_url = dalle_service.generate_image(koan.koan_text)
-    koan.image_url = image_url
+
+    description, image_data = dalle_service.generate_image(koan.koan_text)
+    binary_data = a2b_base64(image_data)
+    with open(os.path.join(settings.static_folder, "static", "koans", f'{koan_id}.png'), 'wb') as fd:
+        fd.write(binary_data)
+        fd.close()
+
+    koan.image_url = f"/static/koans/{koan_id}.png"
+    koan.image_description = description
     db.session.commit()
-    return jsonify({'image_url': image_url})
+    return jsonify({'image_url': koan.image_url, "image_alt_text": koan.image_description})
 
 
 if __name__ == '__main__':

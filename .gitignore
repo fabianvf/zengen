@@ -24,3 +24,4 @@ yarn-error.log*
 *.pyc
 server/instance
 server/__pycache__
+*/koans.db
