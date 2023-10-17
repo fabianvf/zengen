@@ -20,12 +20,10 @@ with app.app_context():
 
 
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
+@app.route("/<string:path>")
+@app.route('/<path:path>/<int:id>')
+def serve(path, id=None):
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/api/generate-koan', methods=['POST'])
@@ -38,7 +36,7 @@ def generate_koan():
     return jsonify({'koan_id': koan.id, 'koan': koan_text})
 
 
-@app.route('/api//koan/<int:id>', methods=['GET'])
+@app.route('/api/koan/<int:id>', methods=['GET'])
 def get_koan(id):
     koan = Koan.query.get(id)
     if koan is None:

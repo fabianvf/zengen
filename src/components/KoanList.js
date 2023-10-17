@@ -6,7 +6,7 @@ function KoanList() {
 
   useEffect(() => {
     async function fetchKoans() {
-        const response = await fetch('http://localhost:5000/api/koans');
+        const response = await fetch('/api/koans');
       const data = await response.json();
       setKoans(data.koans);
     }

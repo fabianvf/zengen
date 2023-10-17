@@ -11,7 +11,7 @@ function KoanDisplay() {
 
   useEffect(() => {
     const fetchKoan = async () => {
-        const response = await fetch(`http://localhost:5000/api/koan/${id}`);
+        const response = await fetch(`/api/koan/${id}`);
       const data = await response.json();
       setKoan(data.koan);
       setImageUrl(data.image_url);
@@ -22,13 +22,11 @@ function KoanDisplay() {
   return (
     <div>
         <PromptHandler />
-        <div className="koan-display-container">
+        <div className="koan-display">
         {koan && (
             <React.Fragment>
-            {imageUrl && <img src={imageUrl} alt="Generated imagery" className="generated-image" />}
-            <div className="koan-text">
-                <h1>{koan}</h1>
-            </div>
+                {imageUrl && <div className="koan-image"><img src={imageUrl} alt="Koan imagery" /></div>}
+            <div className="koan-text">{koan}</div>
             </React.Fragment>
         )}
         </div>
