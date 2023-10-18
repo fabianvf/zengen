@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY server ./
 COPY --from=build /usr/src/app/build /usr/src/app/frontend/build
-ENV STATIC_FOLDER=/usr/src/app/frontend/build
+ENV STATIC_FOLDER=/usr/src/app/frontend/build/static
 # Ensure the koans image directory is present
 RUN mkdir -p /usr/src/app/frontend/build/static/koans
 

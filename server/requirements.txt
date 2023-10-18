@@ -1,6 +1,4 @@
-Flask
-Flask-Cors
-Flask-SQLAlchemy
-gunicorn
-SQLAlchemy
+fastapi
+uvicorn
 openai
+aiosqlite
