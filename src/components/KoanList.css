@@ -11,6 +11,7 @@
 
 .koan-item {
     width: 80%;  /* Adjust width as needed */
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
