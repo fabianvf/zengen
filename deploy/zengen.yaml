@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,3 +33,27 @@ spec:
       - name: images-storage
         persistentVolumeClaim:
           claimName: images-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengen-service
+spec:
+  selector:
+    app: zengen
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: images-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
