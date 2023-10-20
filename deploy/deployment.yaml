@@ -23,15 +23,12 @@ spec:
         env:
         - name: OPENAI_API_KEY
           value: "fill this in"
+        - name: DATABASE_URL
+          value: "postgresql://zengen:veryzen@postgres-service:5432/koans"
         volumeMounts:
-        - name: db-storage
-          mountPath: /usr/src/app/instance
         - name: images-storage
-          mountPath: /usr/src/app/frontend/build/static/koans
+          mountPath: /usr/src/app/frontend/static/koans
       volumes:
-      - name: db-storage
-        persistentVolumeClaim:
-          claimName: db-pvc
       - name: images-storage
         persistentVolumeClaim:
           claimName: images-pvc

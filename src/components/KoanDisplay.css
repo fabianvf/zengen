@@ -13,7 +13,7 @@
 }
 
 .koan-display img {
-    max-width: 80%;  /* Adjust max-width as needed */
+    max-width: 60%;  /* Adjust max-width as needed */
     height: auto;  /* Maintain aspect ratio */
     border-radius: 10px;
 }
@@ -21,7 +21,7 @@
 .koan-display div {
     width: 50%;  /* Adjust width as needed */
     text-align: center;
-    font-size: 1.2em;  /* Larger text */
+    font-size: x-large;  /* Larger text */
 }
 
 @media (max-width: 768px) {

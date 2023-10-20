@@ -2,3 +2,5 @@ fastapi
 uvicorn
 openai
 aiosqlite
+sqlalchemy
+asyncpg

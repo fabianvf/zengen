@@ -1,4 +1,5 @@
 import os
+import logging
 from binascii import a2b_base64
 
 from pydantic import BaseModel
@@ -44,6 +45,10 @@ class Request(BaseModel):
     prompt : str | None = None
     koan_id : int | None = None
 
+
+@app.on_event("startup")
+async def init_tables():
+    await Koan().connect()
 
 
 @app.post('/api/generate-koan')
