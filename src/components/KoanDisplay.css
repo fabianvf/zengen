@@ -2,6 +2,7 @@
 
 .koan-display {
     width: 80%;  /* Adjust width as needed */
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,12 +20,21 @@
 }
 
 .koan-display div {
-    width: 50%;  /* Adjust width as needed */
+    max-width: 50%;  /* Adjust width as needed */
     text-align: center;
     font-size: x-large;  /* Larger text */
 }
 
-@media (max-width: 768px) {
+.koan-image {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  /* height: 100%; /1* ensure the parent div has a height *1/ */
+  height: 300px;
+  width: 300px;
+}
+
+@media (max-width: 1000px) {
 
   .koan-display {
     flex-direction: column;

@@ -5,10 +5,11 @@ import './HomePage.css';
 
 function Homepage() {
   return (
-    <div className="container">
-      <h1>Welcome to ZenGen</h1>
+    <div>
       <PromptHandler />  {/* Render PromptHandler here */}
-      <KoanList />
+      <div className="container">
+        <KoanList />
+      </div>
     </div>
   );
 }

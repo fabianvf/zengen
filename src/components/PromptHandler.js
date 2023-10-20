@@ -17,24 +17,9 @@ function PromptHandler() {
       body: JSON.stringify({ prompt }),
     });
     const data = await response.json();
-
-    // Check if the koan was generated successfully before proceeding
     if (data.koan_id) {
-      // Now call the /generate-image endpoint
-        const imageResponse = await fetch('/api/generate-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ koan_id: data.koan_id }),
-      });
-      const imageData = await imageResponse.json();
-      if (imageData.image_url) {
-        // Navigate to the koan page if the image was generated successfully
-        navigate(`/koan/${data.koan_id}`);
-        setIsLoading(false);  // Set loading to false when request completes
-      } else {
-        console.error('Failed to generate image:', imageData.error || 'Unknown error');
-        setIsLoading(false);  // Set loading to false when request completes
-      }
+      navigate(`/koan/${data.koan_id}`);
+      setIsLoading(false);  // Set loading to false when request completes
     } else {
       console.error('Failed to generate koan:', data.error || 'Unknown error');
       setIsLoading(false);  // Set loading to false when request completes
@@ -43,6 +28,9 @@ function PromptHandler() {
 
   return (
     <div className="prompt-container">
+      <a href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h1>ZenGen</h1>
+      </a>
       <InputField onSubmit={handlePromptSubmit} />
       {isLoading && (  // Conditionally render loading overlay
         <div className="loading-overlay">

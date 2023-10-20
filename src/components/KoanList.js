@@ -17,10 +17,12 @@ function KoanList() {
   return (
     <div className="koan-list">
       {koans.map((koan, index) => (
-        <div key={index} className="koan-item">
-          <img src={koan.image_url} alt={koan.image_alt_text} />
-          <div>{koan.koan_text}</div>
-        </div>
+        <a href={"/koan/" + koan.koan_id} style={{textDecoration: 'none', color: 'inherit'}}>
+          <div key={index} className="koan-item">
+            <img src={koan.image_url} alt={koan.image_alt_text} />
+            <div>{koan.koan_text}</div>
+          </div>
+        </a>
       ))}
     </div>
   );

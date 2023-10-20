@@ -1,8 +1,23 @@
 /* src/components/PromptHandler.css */
 .prompt-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: center; /* Updated */
   align-items: center;
+  padding: 20px; /* Updated */
+  max-width: 800px;
+  margin: auto;
+}
+
+.prompt-container img,
+.prompt-container h1,
+.prompt-container .input-field {
+  margin-right: 20px; /* Updated */
+}
+
+.input-field {
+  flex-grow: 1;
+  max-width: 300px; /* New */
 }
 
 .loading-overlay {
