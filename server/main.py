@@ -123,10 +123,37 @@ async def generate_image(body: Request, db: AsyncSession = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+@app.get("/koan/{id}", response_class=HTMLResponse)
+async def get_koan_with_preview(id : int, db: AsyncSession = Depends(get_db)):
+    koan = None
+    try:
+        koan = await db.execute(select(Koan).where(Koan.id == id))
+        koan = koan.scalar_one_or_none()
+    except Exception as e:
+        # just skip and we'll return the normal page
+        pass
+    if koan is None:
+        content = {"koan": "", "image_url": ""}
+    else:
+        content = {
+            'koan': koan.koan_text,
+            'image_url': koan.image_url,
+        }
 
-@app.api_route("/{path_name:path}", methods=["GET"])
+    with open(os.path.join(settings.static_folder, 'index.html'), 'r') as f:
+        return f.read().format(
+          image=content.get("image_url", ""),
+          description=content.get("koan", "Contemplation Generator").replace("\n", " ").replace('"', "&quot;")
+        )
+
+
+@app.api_route("/{path_name:path}", methods=["GET"], response_class=HTMLResponse)
 async def serve(path_name : str=None):
-    return FileResponse(path=os.path.join(settings.static_folder, 'index.html'))
+    with open(os.path.join(settings.static_folder, 'index.html'), 'r') as f:
+        return f.read().format(
+          image="",
+          description="Contemplation Generator"
+        )
 
 
 if __name__ == '__main__':
