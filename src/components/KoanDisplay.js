@@ -1,6 +1,7 @@
 // src/components/KoanDisplay.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 import PromptHandler from './PromptHandler';  // Import the PromptHandler component
 import './PromptHandler.css';
 import './KoanDisplay.css';  // Import the CSS file
@@ -66,6 +67,11 @@ function KoanDisplay() {
 
   return (
     <div>
+        <Helmet>
+            <meta property="og:title" content="ZenGen" />
+            <meta property="og:description" content={koan && koan.koan}/>
+            <meta property="og:image" content={image && image.image_url} />
+        </Helmet>
         <PromptHandler />
         <div className="koan-display">
         {koan && (

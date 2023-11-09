@@ -1,6 +1,7 @@
 # ZenGen Application
 
 ZenGen is a full-stack web application that generates Zen Koans and associates imagery using GPT-4 and DALL-E.
+Loosely inspired by Ummon from the book series _The Hyperion Cantos_.
 
 It was written largely by ChatGPT with my supervision. The initial conversation can be viewed here:
 
@@ -27,19 +28,9 @@ docker build -t zengen-app .
 docker run -p -e OPENAI_API_KEY='sk-<your-api-key>' 5000:5000 zengen-app
 ```
 
-This will run with sqlite by default. There are also deployment manifests in the 
-
 Now, the application should be running at http://localhost:5000.
 
-### Configuration
-
-ZenGen can be configured via environment variables, defined in [server/settings.py](https://github.com/fabianvf/zengen/blob/main/server/settings.py). Here are the key variables:
-
-- `DATABASE_URL`: The URL of the database to connect to.
-- `OPENAI_API_KEY`: Your OpenAI API key for GPT 4 and DALL-E 3.
-- ...
-
-## Deployment
+### Deployment to Kubernetes
 
 Deployment manifests are provided for deploying ZenGen on a Kubernetes cluster, located in the [deploy](https://github.com/fabianvf/zengen/tree/main/deploy) directory. Here's a brief overview:
 
@@ -48,3 +39,10 @@ Deployment manifests are provided for deploying ZenGen on a Kubernetes cluster, 
 - ...
 
 Ensure to customize the manifests, particularly the environment variables and persistent volume claims, to match your environment before deploying.
+
+### Configuration
+
+ZenGen can be configured via environment variables, defined in [server/settings.py](https://github.com/fabianvf/zengen/blob/main/server/settings.py). Here are the key variables:
+
+- `DATABASE_URL`: The URL of the database to connect to.
+- `OPENAI_API_KEY`: Your OpenAI API key for GPT 4 and DALL-E 3.

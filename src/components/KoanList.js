@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './KoanList.css';
+import './KoanDisplay.css';
 
 function KoanList() {
   const [koans, setKoans] = useState([]);
@@ -18,7 +19,7 @@ function KoanList() {
     <div className="koan-list">
       {koans.map((koan, index) => (
         <a href={"/koan/" + koan.koan_id} style={{textDecoration: 'none', color: 'inherit'}}>
-          <div key={index} className="koan-item">
+          <div key={index} className="koan-display">
             <img src={koan.image_url} alt={koan.image_alt_text} />
             <div>{koan.koan_text}</div>
           </div>

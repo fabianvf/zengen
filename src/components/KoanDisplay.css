@@ -1,5 +1,6 @@
 /* src/components/KoanDisplay.css */
 
+
 .koan-display {
     width: 80%;  /* Adjust width as needed */
     margin: auto;
@@ -14,24 +15,21 @@
 }
 
 .koan-display img {
-    max-width: 60%;  /* Adjust max-width as needed */
+    max-width: 40%;  /* Adjust max-width as needed */
     height: auto;  /* Maintain aspect ratio */
     border-radius: 10px;
 }
 
 .koan-display div {
-    max-width: 50%;  /* Adjust width as needed */
+    width: 50%;  /* Adjust width as needed */
     text-align: center;
     font-size: x-large;  /* Larger text */
 }
 
 .koan-image {
   display: flex;
-  justify-content: right;
-  align-items: right;
-  /* height: 100%; /1* ensure the parent div has a height *1/ */
-  height: 300px;
-  width: 300px;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1000px) {
